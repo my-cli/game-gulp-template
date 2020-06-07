@@ -1,0 +1,25 @@
+/*
+* @Author: zhenghao01
+* @Date:   2020-06-03 16:12:48
+* @Last Modified by:   zhenghao01
+* @Last Modified time: 2020-06-05 11:37:40
+*/
+@function Rem($px) {
+	@return $px / 100 + rem;
+}
+@function Url($url) {
+	@return $url + '?v='+unique-id();
+}
+.container{
+	width:100vw;
+	height: 100vh;
+	background: pink;
+	display: flex;
+	font-size:Rem(60);
+	justify-content: center;
+	align-items: center;
+}
+.bg{
+	background: Url("../images/icon.png") no-repeat;
+}
+

@@ -1,0 +1,22 @@
+/*
+* @Author: zhenghao01
+* @Date:   2020-06-03 16:12:36
+* @Last Modified by:   zhenghao01
+* @Last Modified time: 2020-06-05 11:38:00
+*/
+@function Url($url) {
+	@return $url + '?v='+unique-id();
+}
+.wrap{
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	background:pink;
+	font-size: 60px;
+	justify-content: center;
+	align-items: center;
+}
+.bg{
+	background: Url("../images/icon.png") no-repeat;
+}
+

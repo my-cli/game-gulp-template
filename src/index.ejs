@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PC端页面</title>
+    <%- include('./component/head.ejs')%>
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<!-- 开发：<%=hostname%> -->
+<body>
+	<!--[if lt IE 10]>
+    <div style="position:relative;left:0;top:0;width:100%;height:50px;background:#aa0000;color:#fff;border-bottom:1px solid rgb(230,230,198);text-align:center;line-height:50px;font-size:16px;z-index=9999">您使用的IE浏览器版本过低，可能会影响到您浏览本网页，建议您升级您的浏览器，或者更换谷歌、火狐浏览器等其他浏览器</div>
+    <![endif]-->
+    <div class="container">
+    	<div class="wrap">
+            内容   
+        </div>
+        <div class="pop">
+            <div class="content">
+                <span class="close"></span>
+            </div>
+        </div>
+    </div>
+    <%- include('./component/copyright.ejs')%>
+</body>
+</html>
+<script src="js/index.js"></script>
