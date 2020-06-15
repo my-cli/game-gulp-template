@@ -1,8 +1,8 @@
 /*
  * @Author: zhenghao01
  * @Date:   2020-06-03 16:49:17
- * @Last Modified by:   zhenghao01
- * @Last Modified time: 2020-06-05 11:44:50
+ * @Last Modified by: cowen zheng
+ * @Last Modified time: 2020-06-10 17:55:49
  */
 const { src, dest, series, watch } = require('gulp');
 const {mediaDir}=require('../package.json');
@@ -71,6 +71,7 @@ function js(cb) {
 }
 
 function publish(cb) {
+    const regx1=/i/g;
     return src(`${Config.build}*.html`)
         .pipe(replace('href="style/',function(match){
             return `href="${buildDir}/style/`;

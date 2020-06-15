@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PC端页面</title>
+    <meta name="keywords" content="" />
+<meta name="description" content="" />
+<script type="text/javascript">
+if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+    if (window.location.href.indexOf("?via=") < 0) {
+        try {
+            if (/Android|Windows Phone|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                window.location.href = "mobile.html";
+            } else if (/iPad/i.test(navigator.userAgent)) {
+                window.location.href = "mobile.html";
+            } else {
+                window.location.href = "mobile.html";
+            }
+        } catch (e) {}
+    }
+}
+</script>
+<!-- common start -->
+<link rel="stylesheet" href="https://static.web.sdo.com/chuanshi/libs/common.css">
+<script src="https://static.web.sdo.com/chuanshi/libs/jquery-3.5.1.min.js"></script>
+<script src="https://static.web.sdo.com/chuanshi/libs/common.js"></script>
+<!-- common end -->
+    <link rel="stylesheet" href="build/style/index.css">
+</head>
+<!-- 开发：sh-zhenghao01 -->
+<body>
+	<!--[if lt IE 10]>
+    <div style="position:relative;left:0;top:0;width:100%;height:50px;background:#aa0000;color:#fff;border-bottom:1px solid rgb(230,230,198);text-align:center;line-height:50px;font-size:16px;z-index=9999">您使用的IE浏览器版本过低，可能会影响到您浏览本网页，建议您升级您的浏览器，或者更换谷歌、火狐浏览器等其他浏览器</div>
+    <![endif]-->
+    <div class="container">
+    	<div class="wrap">
+            内容   
+        </div>
+        <div class="pop">
+            <div class="content">
+                <span class="close"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+	版权信息不能为空
+</div>
+</body>
+</html>
+<script src="build/js/index.js"></script>
