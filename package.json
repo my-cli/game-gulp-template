@@ -8,7 +8,7 @@
     "prod": "gulp prod",
     "publish": "gulp publish"
   },
-  "mediaDir":"https://static.web.sdo.com/",
+  "mediaDir":"https://xx.xx.com/",
   "author": "",
   "license": "ISC",
   "browserslist": [
