@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>PC端页面</title>
-    <%- include('./component/head.ejs')%>
-    <link rel="stylesheet" href="style/index.css">
+    <%- include('./component/head.html')%>
+    <link rel="stylesheet" href="style/index.css?v=<%=version%>">
 </head>
 <!-- 开发：<%=hostname%> -->
 <body>
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <%- include('./component/copyright.ejs')%>
+    <%- include('./component/copyright.html')%>
 </body>
 </html>
-<script src="js/index.js"></script>
+<script src="js/index.js?v=<%=version%>"></script>

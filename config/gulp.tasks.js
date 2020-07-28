@@ -1,14 +1,16 @@
 /*
  * @Author: zhenghao01
  * @Date:   2020-06-03 16:49:17
- * @Last Modified by: cowen zheng
- * @Last Modified time: 2020-06-10 17:55:49
+ * @Last Modified by:   zhenghao01
+ * @Last Modified time: 2020-07-28 19:28:31
  */
 const { src, dest, series, watch } = require('gulp');
 const {mediaDir}=require('../package.json');
 const os = require('os'),
+    format = require('date-format'),
     chalk = require("chalk"),
     hostname = os.hostname(),
+    version = format('yyyy-MM-dd-hh-mm-ss-SSS',new Date()),
     Config = require('./gulp.config.js'),
     rename = require('gulp-rename'),
     replace = require('gulp-replace'),
@@ -24,8 +26,8 @@ const os = require('os'),
     uglify = require('gulp-uglify');
 
 function html(cb) {
-    return src(`${Config.src}*.ejs`)
-        .pipe(ejs({hostname}))
+    return src(`${Config.src}*.html`)
+        .pipe(ejs({hostname,version}))
         .pipe(rename({ extname: ".html" }))
         .pipe(dest(`${Config.build}`));
     cb();

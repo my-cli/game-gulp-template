@@ -3,15 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>移动端页面</title>
-	<%- include('./component/meta.ejs') %>
+	<%- include('./component/meta.html')%>
+	<!-- 微信配置 -->
 	<script src="http://xxx.xxx.xxx.com/project/wxconfig.ashx"></script>
-	<link rel="stylesheet" href="style/mobile.css">
+	<link rel="stylesheet" href="style/mobile.css?v=<%=version%>">
 </head>
 <!-- 开发：<%=hostname%> -->
 <body>
 	<div class="container">
 		移动端
 	</div>
+	<div style="display:none;">
+		<%- include('./component/copyright.html')%>
+	</div>
 </body>
 </html>
-<script src="js/mobile.js"></script>		
+<script src="js/mobile.js?v=<%=version%>"></script>		
