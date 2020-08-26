@@ -1,15 +1,15 @@
 /*
  * @Author: zhenghao01
  * @Date:   2020-06-03 14:14:56
- * @Last Modified by:   zhenghao01
- * @Last Modified time: 2020-07-28 17:47:44
+ * @Last Modified by: cowen zheng
+ * @Last Modified time: 2020-08-26 17:27:46
  */
 const chalk = require("chalk");
 const Config = require('./config/gulp.config.js');
 const { series, parallel, watch } = require('gulp');
-const { html, image, imagemin, clean, css, js, publish, convert } = require('./config/gulp.tasks.js');
+const { html, image, imagemin, clean, css, js, publish, convert, download } = require('./config/gulp.tasks.js');
 const browserSync = require('browser-sync').create();
-exports.dev = series(image, css, js, html, function(cb) {
+exports.dev = series(image, css, js, html, function (cb) {
     browserSync.init({
         server: {
             baseDir: Config.build
@@ -27,13 +27,14 @@ exports.dev = series(image, css, js, html, function(cb) {
     })
     cb();
 });
-exports.prod = series(imagemin, css, js, html, function(cb) {
+exports.prod = series(parallel(imagemin), css, js, html, function (cb) {
     cb();
     console.log(chalk.yellow.bgRed.bold(">>>>打包完成<<<<"));
 });
-exports.publish = series(convert, publish, clean, function(cb) {
+exports.publish = series(convert, publish, clean, function (cb) {
     cb();
     console.log(chalk.yellow.bgGreen("----本地图片资源删除----"));
     console.log(chalk.yellow.bgGreen("----媒体服务器替换完成----"));
     console.log(chalk.yellow.bgRed.bold(">>>>发布完成<<<<"));
 });
+exports.assets = series(download);

@@ -1,16 +1,18 @@
 /*
  * @Author: zhenghao01
  * @Date:   2020-06-03 16:49:17
- * @Last Modified by:   zhenghao01
- * @Last Modified time: 2020-07-28 19:28:31
+ * @Last Modified by: cowen zheng
+ * @Last Modified time: 2020-08-26 17:21:11
  */
 const { src, dest, series, watch } = require('gulp');
-const {mediaDir}=require('../package.json');
+const { mediaDir } = require('../package.json');
+const chalk = require("chalk");
 const os = require('os'),
+    path = require('path'),
+    fs = require('fs'),
     format = require('date-format'),
-    chalk = require("chalk"),
     hostname = os.hostname(),
-    version = format('yyyy-MM-dd-hh-mm-ss-SSS',new Date()),
+    version = format('yyyy-MM-dd-hh-mm-ss-SSS', new Date()),
     Config = require('./gulp.config.js'),
     rename = require('gulp-rename'),
     replace = require('gulp-replace'),
@@ -22,12 +24,12 @@ const os = require('os'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require("gulp-autoprefixer"),
     babel = require('gulp-babel'),
-    buildDir=Config.build.split("/")[1],
+    downloader = require('gulp-downloader'),
+    buildDir = Config.build.split("/")[1],
     uglify = require('gulp-uglify');
-
 function html(cb) {
     return src(`${Config.src}*.html`)
-        .pipe(ejs({hostname,version}))
+        .pipe(ejs({ hostname, version }))
         .pipe(rename({ extname: ".html" }))
         .pipe(dest(`${Config.build}`));
     cb();
@@ -47,7 +49,7 @@ function imagemin(cb) {
 }
 
 function clean(cb) {
-    return src([`${Config.build}images/`,`${Config.build}*.html`])
+    return src([`${Config.build}images/`, `${Config.build}*.html`])
         .pipe(cleanDir({ force: true }));
     cb();
 }
@@ -73,31 +75,49 @@ function js(cb) {
 }
 
 function publish(cb) {
-    const regx1=/i/g;
+    let files = fs.readdirSync(path.resolve(process.cwd(), Config.assets)),
+        content = "";
+    content = JSON.stringify(files.map((file) => `${mediaDir}${file}`));
+    fs.writeFileSync(path.resolve(process.cwd(), Config.src + "assets.json"), content, "utf-8");
     return src(`${Config.build}*.html`)
-        .pipe(replace('href="style/',function(match){
+        .pipe(replace('href="style/', function (match) {
             return `href="${buildDir}/style/`;
         }))
-        .pipe(replace('src="js/',function(match){
+        .pipe(replace('src="js/', function (match) {
             return `src="${buildDir}/js/`;
         }))
-        .pipe(replace("href='style/",function(match){
+        .pipe(replace("href='style/", function (match) {
             return `href="${buildDir}/style/`;
         }))
-        .pipe(replace("src='js/",function(match){
+        .pipe(replace("src='js/", function (match) {
             return `src="${buildDir}/js/`;
         }))
         .pipe(dest(`${process.cwd()}`));
     cb();
 }
-
-function convert(cb){
+function convert(cb) {
     return src(`${Config.build}style/*.css`)
-        .pipe(replace('../images/',function(match){
+        .pipe(replace('../images/', function (match) {
             return `${mediaDir}`;
         }))
         .pipe(dest(`${Config.build}style/`));
     cb();
 }
-
-module.exports = { html, image, imagemin, clean, css, js, publish, convert}
+function download(cb) {
+    const isExist = fs.existsSync(path.resolve(process.cwd(), Config.src + "assets.json"));
+    if (fs.existsSync(path.resolve(process.cwd(), Config.assets))) {
+        console.log(chalk.yellow.bgRed.bold("====本地资源已经存在===="));
+        cb();
+        return false;
+    }
+    if (!isExist) {
+        console.log(chalk.yellow.bgRed.bold("====本地资源映射没有上传！===="));
+        cb();
+        return false;
+    }
+    const content = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), Config.src + "assets.json"), "utf-8"));
+    return downloader(content, { verbose: true })
+        .pipe(dest(`${Config.assets}`));
+    cb();
+}
+module.exports = { html, image, imagemin, clean, css, js, publish, convert, download }
