@@ -2,7 +2,7 @@
  * @Author: zhenghao01
  * @Date:   2020-06-03 16:49:17
  * @Last Modified by:   zhenghao01
- * @Last Modified time: 2021-11-10 10:49:33
+ * @Last Modified time: 2021-11-10 17:03:35
  */
 const { src, dest, series, watch } = require('gulp');
 const { mediaDir } = require('../package.json');
@@ -56,6 +56,9 @@ function clean(cb) {
 
 function css(cb) {
     return src(`${Config.src}style/*.scss`)
+        .pipe(replace(/\w+(.jpg|.png|.jpeg)/g,function(match){
+            return `${match}?v=${new Date().getTime()}`;
+        }))
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
