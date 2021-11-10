@@ -7,7 +7,7 @@
     "dev": "npx gulp dev",
     "prod": "npx gulp prod",
     "publish": "npx gulp publish",
-    "assets":"npx gulp assets"
+    "assets": "npx gulp assets"
   },
   "mediaDir": "https://xx.xx.com/",
   "author": "",

@@ -1,8 +1,8 @@
 /*
  * @Author: zhenghao01
  * @Date:   2020-06-03 14:14:56
- * @Last Modified by: cowen zheng
- * @Last Modified time: 2020-08-26 17:27:46
+ * @Last Modified by:   zhenghao01
+ * @Last Modified time: 2021-11-10 10:32:40
  */
 const chalk = require("chalk");
 const Config = require('./config/gulp.config.js');
@@ -16,10 +16,10 @@ exports.dev = series(image, css, js, html, function (cb) {
         },
         notify: false
     });
-    const watcher1 = watch(`${Config.src}*.html`, html),
-        watcher2 = watch(`${Config.src}style/*.scss`, css),
-        watcher3 = watch(`${Config.src}js/*.js`, js),
-        watcher4 = watch(`${Config.src}images/*`, image);
+    const watcher1 = watch(`${Config.src}/`, html),
+        watcher2 = watch(`${Config.src}/`, css),
+        watcher3 = watch(`${Config.src}/`, js),
+        watcher4 = watch(`${Config.src}/`, image);
     [watcher1, watcher2, watcher3, watcher4].map((watcher) => {
         watcher.on("change", () => {
             browserSync.reload();

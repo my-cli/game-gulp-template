@@ -1,5 +1,2 @@
 /node_modules/
-/*.html
-/dist/
-/build/
-/src/*.json
+/**/images/

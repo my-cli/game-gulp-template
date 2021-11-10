@@ -1,8 +1,8 @@
 /*
  * @Author: zhenghao01
  * @Date:   2020-06-03 16:49:17
- * @Last Modified by: cowen zheng
- * @Last Modified time: 2020-08-26 17:21:11
+ * @Last Modified by:   zhenghao01
+ * @Last Modified time: 2021-11-10 10:49:33
  */
 const { src, dest, series, watch } = require('gulp');
 const { mediaDir } = require('../package.json');
